@@ -30,22 +30,18 @@ public class ProductoServiceImpl implements ProductoService{
     @Transactional
     @Override
     public ProductoResponse create(ProductoRequest request) {
-//        Producto producto =productoMapper.toEntity(request);
-//        return productoMapper.toResponse(productoRepository.save(producto));
-        // Buscar la categoría
         Categoria categoria = categoriaRepository.findById(request.idCategoria())
                 .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
 
-        // Crear el producto con el mapper
+
         Producto producto = productoMapper.toEntity(request);
 
-        // Asignar la categoría
+
         producto.setCategoria(categoria);
 
-        // Guardar
         productoRepository.save(producto);
 
-        // Retornar respuesta
+
         return productoMapper.toResponse(producto);
     }
     //FILTRAR POR CATEGORIA
@@ -67,9 +63,6 @@ public class ProductoServiceImpl implements ProductoService{
         Producto producto = productoRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("el producto no existe o no fue encontrado"));
 
-        // Buscar la nueva categoría
-//        Categoria categoria = categoriaRepository.findById(request.idCategoria())
-//                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
 
         productoMapper.updateProductoFromResponse(request, producto);
 

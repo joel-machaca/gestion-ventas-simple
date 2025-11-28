@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-//@RequiredArgsConstructor
+
 public class CategoriaServiceImpl implements CategoriaService
 {
     private final CategoriaRepository categoriaRepository;
